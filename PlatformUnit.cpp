@@ -1,10 +1,10 @@
 #include <algorithm>
 #include <cmath>
 
-#include "PratformUnit.h"
+#include "PlatformUnit.h"
 #include "constants.h"
 
-PratformUnit::PratformUnit(std::vector<Sprite*> sprites, double x, double y, double width, double height, double minX, double maxX) : DynamicUnit(sprites[0], x, y, width, height) {
+PlatformUnit::PlatformUnit(std::vector<Sprite*> sprites, double x, double y, double width, double height, double minX, double maxX) : DynamicUnit(sprites[0], x, y, width, height) {
 	this->sprites = sprites;
 	this->currentSpriteIndex = 0;
 	this->animationCounter = 0;
@@ -16,7 +16,7 @@ PratformUnit::PratformUnit(std::vector<Sprite*> sprites, double x, double y, dou
 	this->velocity(PLATFORM_VELOCITY);
 }
 
-void PratformUnit::update() {
+void PlatformUnit::update() {
 	if (animationCounter == 0) {
 		sprite(sprites[currentSpriteIndex]);
 		currentSpriteIndex = (currentSpriteIndex + 1) % sprites.size();
@@ -25,22 +25,22 @@ void PratformUnit::update() {
 	DynamicUnit::update();
 }
 
-double PratformUnit::x() {
+double PlatformUnit::x() {
 	return std::clamp(DynamicUnit::x(), this->minX(), this->maxX());
 }
 
-double PratformUnit::maxX() {
+double PlatformUnit::maxX() {
 	return this->_maxX >= 0 ? this->_maxX : HUGE_VAL;
 }
 
-void PratformUnit::maxX(double maxX) {
+void PlatformUnit::maxX(double maxX) {
 	this->_maxX = maxX;
 }
 
-double PratformUnit::minX() {
+double PlatformUnit::minX() {
 	return this->_minX >= 0 ? this->_minX : -HUGE_VAL;
 }
 
-void PratformUnit::minX(double minX) {
+void PlatformUnit::minX(double minX) {
 	this->_minX = minX;
 }

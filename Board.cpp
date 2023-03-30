@@ -17,11 +17,15 @@ Board::Board(int width, int height) : textures(*new Textures()), background(*new
 	this->playerHp = 3;
 	this->scoreboard = {};
 
+	this->init_board();
+}
+
+void Board::init_board() {
 	this->loadLevel();
 	double platformWidth = this->width * COEF_X;
 	double platformHeight = this->height * COEF_Y;
 
-	this->addPlatform(new PratformUnit(textures.platform(), (this->width - platformWidth) / 2, 0.9 * this->height - platformHeight,
+	this->addPlatform(new PlatformUnit(textures.platform(), (this->width - platformWidth) / 2, 0.9 * this->height - platformHeight,
 		platformWidth, platformHeight, 0, this->width - platformWidth));
 	this->platform->minWidth(0);
 	this->platform->maxWidth(this->platform->width() * 2);
@@ -129,18 +133,7 @@ void Board::reset() {
 	this->isVictory = false;
 
 
-	this->loadLevel();
-	double platformWidth = this->width * COEF_X;
-	double platformHeight = this->height * COEF_Y;
-
-	this->addPlatform(new PratformUnit(textures.platform(), (this->width - platformWidth) / 2, 0.9 * this->height - platformHeight,
-		platformWidth, platformHeight, 0, this->width));
-	this->platform->minWidth(0);
-	this->platform->maxWidth(this->platform->width() * 2);
-	this->addBall(new BallUnit(textures.ball(), (platform->x() + platform->width() / 2) - this->height * COEF_Y / 4, platform->y() - platformHeight / 2, this->height * COEF_Y / 2, this->height * COEF_Y / 2));
-	this->addCursor(new Unit(textures.cursor(), -50, -50, 16, 16));
-	this->savingWall = NULL;
-	this->loadHp();
+	this->init_board();
 }
 
 bool Board::intersects(Unit* other) {
@@ -165,7 +158,7 @@ void Board::removeUnit(Unit* unit) {
 	}
 }
 
-bool Board::addPlatform(PratformUnit* platform) {
+bool Board::addPlatform(PlatformUnit* platform) {
 	this->platform = platform;
 	return true;
 }

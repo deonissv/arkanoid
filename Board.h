@@ -4,7 +4,7 @@
 
 #include "Framework.h"
 #include "Textures.h"
-#include "PratformUnit.h"
+#include "PlatformUnit.h"
 #include "BallUnit.h"
 #include "BlockUnit.h"
 #include "Effect.h"
@@ -29,7 +29,7 @@ public:
   
 	Textures& textures;
 	Unit& background;
-	PratformUnit* platform;
+	PlatformUnit* platform;
 	BallUnit* ball;
 	Unit* cursor;
 	Unit* savingWall;
@@ -39,6 +39,7 @@ public:
 
 	Board(int width, int height);
 
+	void init_board();
 	void loadLevel();
 	void loadPyramid(int rows);
 	void loadAreas();
@@ -47,7 +48,7 @@ public:
 	bool intersects(Unit* other);
 	bool addUnit(Unit* block);
 	void removeUnit(Unit* unit);
-	bool addPlatform(PratformUnit* platform);
+	bool addPlatform(PlatformUnit* platform);
 	bool addBall(BallUnit* ball);
 	void addCursor(Unit* cursor);
 	void addArea(Area* area);

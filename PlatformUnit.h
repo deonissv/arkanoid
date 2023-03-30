@@ -2,7 +2,7 @@
 #include "DynamicUnit.h"
 #include <vector>
 
-class PratformUnit : public DynamicUnit {
+class PlatformUnit : public DynamicUnit {
 	std::vector<Sprite*> sprites;
 	int currentSpriteIndex;
 	int animationCounter;
@@ -10,7 +10,7 @@ class PratformUnit : public DynamicUnit {
 	double _maxX;
 
 public:
-	PratformUnit(std::vector<Sprite*> sprites, double x, double y, double width, double height, double minX = -1, double maxX = -1);
+	PlatformUnit(std::vector<Sprite*> sprites, double x, double y, double width, double height, double minX = -1, double maxX = -1);
 	virtual void update();
 
 	virtual double x();
